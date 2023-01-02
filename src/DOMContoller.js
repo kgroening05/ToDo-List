@@ -8,7 +8,7 @@ export const Page = (()=>{
         const addProjectBtn = document.createElement ('button')
         
         sidebarDiv.classList.add ('sidebar')
-        projectListDiv.classList.add ('project-list')
+        projectListDiv.id = 'project-list'
 
         sectionTitle.textContent = 'Projects';
         addProjectBtn.textContent = 'Add Project'
