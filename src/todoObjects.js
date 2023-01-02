@@ -10,17 +10,28 @@ export default function TodoItem (title, description, dueDate, priority) {
 export const Projects =  (() => {
     let projectList = {default: ['example1','example2']};
     let currentProject = 'default';
+
     const addProject = function (newProject) {
-        Object.defineProperty(projectList, newProject, [])
+        Object.defineProperty(projectList, newProject,{
+            value: [],
+            writable: true,
+            enumerable: true,
+            configurable: true,
+        });
     }
 
     const setCurrentProject = function (newCurrentProject) {
-        this.currentProject = newCurrentProject;
+        if (newCurrentProject in this.projectList){
+            
+            this.currentProject = newCurrentProject;
+        } else {
+            console.log("That project doesn't exist yet.")
+        }
     }
 
     const addTodo = function (newTodo) {
-        this.projectList[currentProject].push(newTodo);
+        this.projectList[this.currentProject].push(newTodo);
     }
 
-    return ({ projectList, addProject, setCurrentProject, addTodo })
+    return ({ projectList, currentProject, addProject, setCurrentProject, addTodo })
 })();
