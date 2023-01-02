@@ -33,7 +33,17 @@ export const Page = (()=>{
         contentDiv.append(main)
     }
 
-    return { setupSidebar, setupMain }
+    const refreshTodoList = function(projectList, currentProject) {
+        const todoContainer = document.getElementById('todo-container');
+        for (const todo in projectList[currentProject]) {
+            const todoCard = document.createElement('div')
+            todoCard.className = 'todo-card'
+            todoCard.textContent = projectList[currentProject][todo].title;
+            todoContainer.appendChild(todoCard)
+        }
+    }
+
+    return { setupSidebar, setupMain, refreshTodoList }
 })(); 
 
 export default function (){
