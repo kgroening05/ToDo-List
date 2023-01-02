@@ -43,7 +43,17 @@ export const Page = (()=>{
         }
     }
 
-    return { setupSidebar, setupMain, refreshTodoList }
+    const refreshProjectList = function(projectList) {
+        const projectListDiv = document.getElementById('project-list')
+        for (const project in Object.keys(projectList)){
+            const projectCard = document.createElement('div')
+            projectCard.className = 'project-card'
+            projectCard.textContent = Object.keys(projectList)[project];
+            projectListDiv.appendChild(projectCard)
+        }
+    }
+
+    return { setupSidebar, setupMain, refreshTodoList, refreshProjectList }
 })(); 
 
 export default function (){
