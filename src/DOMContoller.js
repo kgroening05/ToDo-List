@@ -1,6 +1,6 @@
 export const Page = (()=>{
     const contentDiv = document.getElementById('content');
-    console.log(contentDiv)
+
     const setupSidebar = function() {
         const sidebarDiv = document.createElement('div');
         const sectionTitle = document.createElement('h2')
@@ -17,7 +17,23 @@ export const Page = (()=>{
         contentDiv.append(sidebarDiv);
     }
 
-    return { setupSidebar }
+    const setupMain = function() {
+        const main = document.createElement('main');
+        const projectTitle = document.createElement('h2')
+        const addTodoBtn = document.createElement('button')
+        const todoContainer = document.createElement('div')
+
+        projectTitle.id = 'project-title'
+        todoContainer.id = 'todo-container'
+        addTodoBtn.id = 'add-todo-btn'
+
+        addTodoBtn.textContent = 'Add Task'
+
+        main.append(projectTitle, addTodoBtn, todoContainer)
+        contentDiv.append(main)
+    }
+
+    return { setupSidebar, setupMain }
 })(); 
 
 export default function (){
