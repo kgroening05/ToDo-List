@@ -14,11 +14,41 @@
   grid-template-columns: 1fr 3fr;
   background-color: var(--background);
   color: var(--text-color);
-  height: 100%;
+  width: 100%;
 }
 
 .sidebar, main {
   padding: 32px;
+}
+
+body{
+  display: flex;
+  justify-content: center;
+}
+
+#modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.4rem;
+  width: 450px;
+  padding: 1.3rem;
+  min-height: 250px;
+  position: absolute;
+  top: 20%;
+  background-color: var(--card-background);
+  border: 1px solid #ddd;
+  border-radius: 15px;
+  color: var(--text-color);
+}
+
+.modal-content {
+  flex: auto;
+  width: 100%;
+}
+
+.close-btn{
+  background-color: rgb(100, 50, 50);
 }
 
 #project-list, #todo-container{

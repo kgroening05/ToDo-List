@@ -33,6 +33,21 @@ export const Page = (()=>{
         contentDiv.append(main)
     }
 
+    const setupModal = function() {
+        const body = document.getElementById('body')
+        const modal = document.createElement('div');
+        const modalContent = document.createElement('div')
+        const closeBtn = document.createElement('button')
+
+        modal.id = 'modal'
+        closeBtn.classList.add('close-btn')
+        modalContent.classList.add('modal-content')
+        modalContent.textContent = 'Hello Modal'
+        closeBtn.textContent = 'Discard'
+        modal.append(modalContent, closeBtn)
+        body.insertBefore(modal, contentDiv)
+    }
+
     const refreshTodoList = function(projectList, currentProject) {
         const todoContainer = document.getElementById('todo-container');
         for (const todo in projectList[currentProject]) {
@@ -53,7 +68,7 @@ export const Page = (()=>{
         }
     }
 
-    return { setupSidebar, setupMain, refreshTodoList, refreshProjectList }
+    return { setupSidebar, setupMain, setupModal, refreshTodoList, refreshProjectList }
 })(); 
 
 export default function (){
