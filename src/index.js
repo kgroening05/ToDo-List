@@ -10,7 +10,9 @@ Projects.addTodo(TodoItem('Another Test item','test desc','today','1'))
 
 Page.setupSidebar();
 Page.setupMain();
+Page.setupModal();
 Page.refreshTodoList(Projects.projectList, Projects.currentProject);
 Page.refreshProjectList(Projects.projectList)
+Page.addModalForm({'title':'text', 'description':'text', 'date':'date', 'priority':'number', 'add':'submit'});
 
 

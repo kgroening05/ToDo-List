@@ -33,7 +33,6 @@ body{
   gap: 0.4rem;
   width: 450px;
   padding: 1.3rem;
-  min-height: 250px;
   position: absolute;
   top: 20%;
   background-color: var(--card-background);
@@ -45,6 +44,25 @@ body{
 .modal-content {
   flex: auto;
   width: 100%;
+}
+
+.modal-content form{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-div{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.input {
+  height: 1.5rem;
+  font-weight: bold;
+  font-size: 1.2rem;
+  width: 300px;
 }
 
 .close-btn{
@@ -63,7 +81,8 @@ h2 {
   padding-bottom: 16px;
 }
 
-button{
+button, #add{
+  height: revert;
   border: 2px solid white;
   border-radius: 8px;
   width: 100%;
@@ -71,6 +90,7 @@ button{
   background-color: grey;
   color: var(--text-color);
   font-weight: bold;
+  font-size: 0.9rem;
 }
 
 button:hover{
