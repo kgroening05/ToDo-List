@@ -59,17 +59,17 @@ export const Page = (()=>{
         }
     }
 
-    const addModalForm = function (textInputs){
+    const addModalForm = function (formElements, submitCallbackFn){
         const modalWindow = document.getElementById('modal');
         const modalContent = document.getElementById('modal-content');
         _removeAllChildNodes(modalContent);
         const todoForm = document.createElement('form');
-
-        for (const index in Object.keys(textInputs)) {
+        todoForm.setAttribute('action', `javascript:${submitCallbackFn}()`)
+        
+        for (const index in Object.keys(formElements)) {
             const entryDiv = document.createElement('div')
             entryDiv.classList.add('input-div')
-            const [key, value] = Object.entries(textInputs)[index]
-            console.log(value)
+            const [key, value] = Object.entries(formElements)[index]
             const field = document.createElement('input')
             field.setAttribute('type', `${value}`)
             field.setAttribute('name', `${key}`)
@@ -81,6 +81,11 @@ export const Page = (()=>{
                 label.textContent = `${key.charAt(0).toUpperCase() + key.slice(1)}: `
                 entryDiv.append(label)
             } else {
+                field.addEventListener('click', () => {
+                    modalWindow.style.display = 'none'
+                    submitCallbackFn();
+
+                })
                 field.setAttribute('value', `${key.charAt(0).toUpperCase() + key.slice(1)}`);
             }
             entryDiv.append(field)
@@ -93,6 +98,7 @@ export const Page = (()=>{
 
     const refreshTodoList = function(projectList, currentProject) {
         const todoContainer = document.getElementById('todo-container');
+        _removeAllChildNodes(todoContainer);
         for (const todo in projectList[currentProject]) {
             const todoCard = document.createElement('div')
             todoCard.className = 'todo-card'
