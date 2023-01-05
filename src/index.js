@@ -17,16 +17,21 @@ const EventListeners = (()=>{
     const submitProjectBtn = function () {
         const newProject = document.getElementById('project').value;
         Projects.addProject(newProject)
-        Page.refreshProjectList(Projects.projectList, Projects.currentProject)
+        Page.refreshProjectList(Projects.projectList, EventListeners.selectCurrentProject)
     }
     const addTodoItemBtn = function () {
         Page.addModalForm(toDoFormElements, EventListeners.submitTodoBtn);
     }
     const addProjectItemBtn = function() {
-        console.log('yarp')
         Page.addModalForm(projectFormElements, EventListeners.submitProjectBtn);
     }
-    return { submitTodoBtn, addTodoItemBtn, submitProjectBtn, addProjectItemBtn }
+    const selectCurrentProject = function(event) {
+        Projects.setCurrentProject(event.target.innerText)
+        const projectTitle = document.getElementById('project-title')
+        projectTitle.textContent = Projects.currentProject
+        Page.refreshTodoList(Projects.projectList, Projects.currentProject);
+    }
+    return { submitTodoBtn, addTodoItemBtn, submitProjectBtn, addProjectItemBtn, selectCurrentProject }
 })();
 
 Projects.addProject('Test Project');
@@ -36,10 +41,10 @@ Projects.addTodo(TodoItem('Another Test item','test desc','today','1'))
 // console.log(Projects.projectList[Projects.currentProject][0].title)
 
 Page.setupSidebar(EventListeners.addProjectItemBtn);
-Page.setupMain(EventListeners.addTodoItemBtn);
+Page.setupMain(EventListeners.addTodoItemBtn, Projects.currentProject);
 Page.setupModal();
 Page.refreshTodoList(Projects.projectList, Projects.currentProject);
-Page.refreshProjectList(Projects.projectList)
+Page.refreshProjectList(Projects.projectList, EventListeners.selectCurrentProject)
 
 
 

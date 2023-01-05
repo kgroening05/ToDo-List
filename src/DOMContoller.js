@@ -21,7 +21,7 @@ export const Page = (()=>{
         contentDiv.append(sidebarDiv);
     }
 
-    const setupMain = function(btnEventListener) {
+    const setupMain = function(btnEventListener, sectionTitle) {
         const main = document.createElement('main');
         const projectTitle = document.createElement('h2')
         const addTodoBtn = document.createElement('button')
@@ -32,7 +32,7 @@ export const Page = (()=>{
         addTodoBtn.id = 'add-todo-btn'
 
         addTodoBtn.textContent = 'Add Task'
-
+        projectTitle.textContent = sectionTitle;
         addTodoBtn.addEventListener('click', ()=>{
             btnEventListener();
         });
@@ -115,13 +115,16 @@ export const Page = (()=>{
         }
     }
 
-    const refreshProjectList = function(projectList) {
+    const refreshProjectList = function(projectList, selectProjectCallbackFn) {
         const projectListDiv = document.getElementById('project-list')
         _removeAllChildNodes(projectListDiv);
         for (const project in Object.keys(projectList)){
             const projectCard = document.createElement('div')
             projectCard.className = 'project-card'
             projectCard.textContent = Object.keys(projectList)[project];
+            projectCard.addEventListener('click', (e)=>{
+                selectProjectCallbackFn(e);
+            })
             projectListDiv.appendChild(projectCard)
         }
     }
