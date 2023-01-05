@@ -13,7 +13,11 @@ const EventListeners = (()=>{
         Projects.addTodo(newItem);
         Page.refreshTodoList(Projects.projectList, Projects.currentProject);
     }
-    return { submitBtn }
+    const addTodoItemBtn = function () {
+        console.log('yarp')
+        Page.addModalForm(toDoFormElements, EventListeners.submitBtn);
+    }
+    return { submitBtn, addTodoItemBtn }
 })();
 
 Projects.addProject('Test Project');
@@ -23,11 +27,10 @@ Projects.addTodo(TodoItem('Another Test item','test desc','today','1'))
 // console.log(Projects.projectList[Projects.currentProject][0].title)
 
 Page.setupSidebar();
-Page.setupMain();
+Page.setupMain(EventListeners.addTodoItemBtn);
 Page.setupModal();
 Page.refreshTodoList(Projects.projectList, Projects.currentProject);
 Page.refreshProjectList(Projects.projectList)
-Page.addModalForm(toDoFormElements, EventListeners.submitBtn);
 
 
 

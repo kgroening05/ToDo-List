@@ -17,7 +17,7 @@ export const Page = (()=>{
         contentDiv.append(sidebarDiv);
     }
 
-    const setupMain = function() {
+    const setupMain = function(btnEventListener) {
         const main = document.createElement('main');
         const projectTitle = document.createElement('h2')
         const addTodoBtn = document.createElement('button')
@@ -28,6 +28,10 @@ export const Page = (()=>{
         addTodoBtn.id = 'add-todo-btn'
 
         addTodoBtn.textContent = 'Add Task'
+
+        addTodoBtn.addEventListener('click', ()=>{
+            btnEventListener();
+        });
 
         main.append(projectTitle, addTodoBtn, todoContainer)
         contentDiv.append(main)
