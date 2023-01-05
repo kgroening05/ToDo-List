@@ -21,9 +21,11 @@ const EventListeners = (()=>{
     }
     const addTodoItemBtn = function () {
         Page.addModalForm(toDoFormElements, EventListeners.submitTodoBtn);
+        document.getElementById('title').focus()
     }
     const addProjectItemBtn = function() {
         Page.addModalForm(projectFormElements, EventListeners.submitProjectBtn);
+        document.getElementById('project').focus()
     }
     const selectCurrentProject = function(event) {
         Projects.setCurrentProject(event.target.innerText)
