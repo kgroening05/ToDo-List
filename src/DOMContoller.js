@@ -1,7 +1,7 @@
 export const Page = (()=>{
     const contentDiv = document.getElementById('content');
 
-    const setupSidebar = function() {
+    const setupSidebar = function(btnEventListener) {
         const sidebarDiv = document.createElement('div');
         const sectionTitle = document.createElement('h2')
         const projectListDiv = document.createElement('div')
@@ -12,6 +12,10 @@ export const Page = (()=>{
 
         sectionTitle.textContent = 'Projects';
         addProjectBtn.textContent = 'Add Project'
+
+        addProjectBtn.addEventListener('click', () => {
+            btnEventListener();
+        });
 
         sidebarDiv.append(sectionTitle, addProjectBtn, projectListDiv);
         contentDiv.append(sidebarDiv);
@@ -113,6 +117,7 @@ export const Page = (()=>{
 
     const refreshProjectList = function(projectList) {
         const projectListDiv = document.getElementById('project-list')
+        _removeAllChildNodes(projectListDiv);
         for (const project in Object.keys(projectList)){
             const projectCard = document.createElement('div')
             projectCard.className = 'project-card'
