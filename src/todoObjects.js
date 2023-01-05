@@ -8,7 +8,7 @@ export default function TodoItem (title, description, dueDate, priority) {
 };
 
 export const Projects =  (() => {
-    let projectList = {default: ['example1','example2']};
+    let projectList = {default: []};
     let currentProject = 'default';
 
     const addProject = function (newProject) {

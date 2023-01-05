@@ -34,15 +34,12 @@ const EventListeners = (()=>{
     return { submitTodoBtn, addTodoItemBtn, submitProjectBtn, addProjectItemBtn, selectCurrentProject }
 })();
 
-Projects.addProject('Test Project');
-Projects.setCurrentProject('Test Project')
-Projects.addTodo(TodoItem('Test item','test desc','today','1'))
-Projects.addTodo(TodoItem('Another Test item','test desc','today','1'))
-// console.log(Projects.projectList[Projects.currentProject][0].title)
-
+// Setup DOM elements
 Page.setupSidebar(EventListeners.addProjectItemBtn);
 Page.setupMain(EventListeners.addTodoItemBtn, Projects.currentProject);
 Page.setupModal();
+
+// Refresh list displays
 Page.refreshTodoList(Projects.projectList, Projects.currentProject);
 Page.refreshProjectList(Projects.projectList, EventListeners.selectCurrentProject)
 
